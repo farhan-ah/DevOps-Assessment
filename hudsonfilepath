@@ -1,0 +1,33 @@
+import hudson.*;
+    
+    pipeline { 
+        agent {
+            node {
+                label 'master'
+            }
+        } 
+    
+        options {
+            skipStagesAfterUnstable();
+        }
+        stages {
+            stage('Build') { 
+                steps { 
+                    node('master') {
+                       echo "${pwd()}";
+    
+                    }
+                }
+            }
+            stage('Test'){
+                steps {
+                    echo 'test';
+                }
+            }
+            stage('Deploy') {
+                steps {
+                    echo 'deploy';
+                }
+            }
+        }
+    }
